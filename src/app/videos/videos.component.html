@@ -10,8 +10,8 @@
 </div>
 <div class="row">
   <app-videos-list
-    *ngFor="let video of videosList"
+    class="flex-center"
+    *ngFor="let video of youtubeApi.videosList"
     [video]="video">
   </app-videos-list>
-  <router-outlet></router-outlet>
 </div>

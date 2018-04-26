@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
+import {Component, OnInit, Sanitizer} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {YoutubeApiService} from '../youtube-api.service';
 
 @Component({
   selector: 'app-video-details',
@@ -9,16 +9,25 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class VideoDetailsComponent implements OnInit {
   id: string;
+  video;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: Sanitizer,
+              private youtubeApi: YoutubeApiService) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute);
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.video = this.youtubeApi.getVideo(this.id);
+      }
+    );
+    console.log(this.youtubeApi.getApiResponse());
   }
 
   getVideoUrl() {
     return `//www.youtube.com/embed/${this.id}`;
   }
+
 
 }

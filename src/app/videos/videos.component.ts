@@ -18,8 +18,8 @@ export class VideosComponent implements OnInit {
   }
 
   search(query: string) {
-    this.youtubeApi.getVideos(query).subscribe(data => this.videosList = data);
-    console.log(this.videosList);
+    // this.youtubeApi.getVideos(query).subscribe(data => this.videosList = data);
+    this.youtubeApi.search(query);
   }
 
   onSubmit(form: NgForm) {

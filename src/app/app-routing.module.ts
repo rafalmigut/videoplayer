@@ -7,10 +7,9 @@ import {VideoDetailsComponent} from './video-details/video-details.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/videos', pathMatch: 'full'},
-  {path: 'videos', component: VideosComponent, canActivate: [AuthGuardService], children: [
-      {path: ':id', component: VideoDetailsComponent, canActivate: [AuthGuardService]}
-    ]},
-  {path: 'signin', component: SigninComponent}
+  {path: 'videos', component: VideosComponent, canActivate: [AuthGuardService]},
+  {path: 'video/:id', component: VideoDetailsComponent, canActivate: [AuthGuardService]},
+  {path: 'signin', component: SigninComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

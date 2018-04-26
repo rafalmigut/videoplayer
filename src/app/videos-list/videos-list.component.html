@@ -1,6 +1,6 @@
-<div class="row row flex-center">
-  <div class="row col-md-12">{{ video.snippet.title }}</div>
-  <div class="row col-md-12">
-    <img src="{{ video.snippet.thumbnails.medium.url }}" alt="" style="cursor: pointer;" [routerLink]="['/videos/1']">
+<div class="row flex-center">
+  <div class="col-md-12">{{ video.snippet.title }}</div>
+  <div class="col-md-12">
+    <img src="{{ video.snippet.thumbnails.medium.url }}" alt="" style="cursor: pointer;" [routerLink]="['/video/'+video.id.videoId]">
   </div>
 </div>
