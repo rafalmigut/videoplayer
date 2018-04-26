@@ -1,0 +1,24 @@
+<div class="container" *ngIf="!authService.getIsEmailEntered()">
+  <div class="row">
+    <div>
+      <p>Enter your email address</p>
+      <form (ngSubmit)="onSignin(f)" #f="ngForm">
+        <input type="email" name="email" ngModel class="input-group-text" autofocus>
+        <br>
+        <button type="submit" class="btn btn-primary col-md-12">Next step!</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="authService.getIsEmailEntered()">
+  <div class="row">
+    <div>
+      <p>Enter your password</p>
+      <form (ngSubmit)="onSigninPass(f)" #f="ngForm">
+        <input type="password" name="password" id="password" ngModel class="input-group-text">
+        <br>
+        <button type="submit" class="btn btn-primary col-md-12">Sign in!</button>
+      </form>
+    </div>
+  </div>
+</div>

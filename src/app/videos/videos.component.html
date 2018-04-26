@@ -1,0 +1,17 @@
+<div class="row">
+  <h1>Video player</h1>
+</div>
+<div class="row">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <input type="text" ngModel name="query" class="input-group-text">
+    <br>
+    <button type="submit" class="btn btn-primary col-md-12">Search!</button>
+  </form>
+</div>
+<div class="row">
+  <app-videos-list
+    *ngFor="let video of videosList"
+    [video]="video">
+  </app-videos-list>
+  <router-outlet></router-outlet>
+</div>

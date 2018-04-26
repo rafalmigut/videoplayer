@@ -8,13 +8,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class VideosListComponent implements OnInit {
   @Input('video') video;
-  constructor(public sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  getVideoUrl() {
-    return `//www.youtube.com/embed/${this.video.id.videoId}`;
+    console.log(this.video);
   }
 
 }
