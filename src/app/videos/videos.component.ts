@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {YoutubeApiService} from '../youtube-api.service';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-videos',
@@ -11,7 +12,8 @@ export class VideosComponent implements OnInit {
   videosList;
   query = '';
 
-  constructor(private youtubeApi: YoutubeApiService) {
+  constructor(private youtubeApi: YoutubeApiService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -27,5 +29,6 @@ export class VideosComponent implements OnInit {
     if (form.dirty) {
       this.search(this.query);
     }
+    this.router.navigate(['/videos/list']);
   }
 }

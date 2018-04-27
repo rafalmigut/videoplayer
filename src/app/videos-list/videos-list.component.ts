@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {YoutubeApiService} from '../youtube-api.service';
 
 @Component({
   selector: 'app-videos-list',
@@ -7,10 +8,19 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class VideosListComponent implements OnInit {
   @Input('video') video;
-  constructor() { }
+  // videosList;
+  constructor(private youtubeApi: YoutubeApiService) { }
 
   ngOnInit() {
     console.log(this.video);
+    // this.videosList = this.youtubeApi.getVideosList();
+    // console.log(this.youtubeApi.getVideosList());
+  }
+
+  check() {
+    // console.log(this.video);
+    // this.videosList = this.youtubeApi.getVideosList();
+    // console.log(this.youtubeApi.getVideosList());
   }
 
 }

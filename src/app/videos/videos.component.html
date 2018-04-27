@@ -1,17 +1,22 @@
-<div class="row">
-  <h1>Video player</h1>
-</div>
-<div class="row">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <input type="text" ngModel name="query" class="input-group-text">
+<div class="container">
+  <div class="row">
+    <h1>Video player</h1>
+  </div>
+  <div class="row">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <input type="text" ngModel name="query" class="input-group-text">
+      <br>
+      <button type="submit" class="btn btn-primary col-md-12">Search!</button>
+    </form>
+  </div>
+  <br>
+  <div class="row">
     <br>
-    <button type="submit" class="btn btn-primary col-md-12">Search!</button>
-  </form>
+    <app-videos-list
+      class="row" style="width: 100%;"
+      *ngFor="let video of youtubeApi.videosList"
+      [video]="video">
+    </app-videos-list>
+  </div>
 </div>
-<div class="row">
-  <app-videos-list
-    class="flex-center"
-    *ngFor="let video of youtubeApi.videosList"
-    [video]="video">
-  </app-videos-list>
-</div>
+
