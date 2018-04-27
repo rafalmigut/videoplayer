@@ -1,3 +1,8 @@
+USERSNAMES and PASSWORDS are in src/assets/users.json file.
+You can use default user:
+email: test@test.com
+pass: test
+
 # Videoplayer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
