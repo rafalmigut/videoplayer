@@ -19,15 +19,26 @@ export class YoutubeApiService {
     return this.videosListObservable;
   }
 
-  getVideos(query: string) {
-    return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}`)
-      .map((response: Response) => response)
-      .map((data: any) => data.items);
+  getVideos(query: string, pageToken: string = '') {
+    if (pageToken === '') {
+      return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}`)
+        .map((response: Response) => response)
+        .map((data: any) => data.items);
+    } else {
+      return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}&pageToken=${pageToken}`)
+        .map((response: Response) => response)
+        .map((data: any) => data.items);
+    }
   }
 
-  getResponse(query: string) {
-    return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}&pageToken=CAUQAA`)
-      .map((response: Response) => response);
+  getResponse(query: string, pageToken: string = '') {
+    if (pageToken === '') {
+      return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}`)
+        .map((response: Response) => response);
+    } else {
+      return this.http.get(`${API_PATH}/search?q=${query}&part=snippet&key=${API_KEY}&pageToken=${pageToken}`)
+        .map((response: Response) => response);
+    }
   }
 
   getVideo(id: string) {
@@ -40,8 +51,18 @@ export class YoutubeApiService {
     return this.apiResponse;
   }
 
-  search(query: string) {
-    this.getVideos(query).subscribe(data => this.videosList = data);
-    this.getResponse(query).subscribe(data => this.apiResponse = data);
+  search(query: string, pageToken: string = '') {
+    this.getVideos(query, pageToken).subscribe(data => this.videosList = data);
+    this.getResponse(query, pageToken).subscribe(data => this.apiResponse = data);
+  }
+
+  searchNext(query: string, pageToken: string = this.apiResponse.nextPageToken) {
+    this.getVideos(query, pageToken).subscribe(data => this.videosList = data);
+    this.getResponse(query, pageToken).subscribe(data => this.apiResponse = data);
+  }
+
+  searchPrevious(query: string, pageToken: string = this.apiResponse.prevPageToken) {
+    this.getVideos(query, pageToken).subscribe(data => this.videosList = data);
+    this.getResponse(query, pageToken).subscribe(data => this.apiResponse = data);
   }
 }

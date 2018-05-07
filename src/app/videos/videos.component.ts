@@ -31,4 +31,12 @@ export class VideosComponent implements OnInit {
     }
     this.router.navigate(['/videos/list']);
   }
+
+  nextPage() {
+    this.youtubeApi.searchNext(this.query);
+  }
+
+  previousPage() {
+    this.youtubeApi.searchPrevious(this.query);
+  }
 }

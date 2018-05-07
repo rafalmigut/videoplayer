@@ -10,8 +10,14 @@
     </form>
   </div>
   <br>
+  <button *ngIf="youtubeApi.videosList.length > 0"
+          (click)="previousPage()"
+          class="btn btn-primary">Previous page</button>
+  <button *ngIf="youtubeApi.videosList.length > 0"
+          (click)="nextPage()"
+          class="btn btn-primary">Next page</button>
   <div class="row">
-    <br>
+    <br><br>
     <app-videos-list
       class="row" style="width: 100%;"
       *ngFor="let video of youtubeApi.videosList"
